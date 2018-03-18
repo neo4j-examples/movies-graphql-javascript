@@ -8,7 +8,7 @@ import { cors } from 'cors';
 import { v1 as neo4j } from 'neo4j-driver';
 
 const {
-    PORT = 8080,
+    PORT = 3000,
     NEO4J_URL = "bolt://localhost:7687",
     NEO4J_USER = "neo4j",
     NEO4J_PASSWORD = "letmein"
@@ -21,9 +21,8 @@ app.use(express.static('lib'));
 app.use(bodyParser.json());
 
 const schema = makeExecutableSchema({ typeDefs, resolvers });
-app.get('/', (req, res) => res.send('Hello World!'));
 
-app.listen(3000, () => console.log('Example app listening on port 3000!'));
+app.listen(PORT, () => console.log(`Example app listening on port ${PORT}!`));
 
 app.use(
     '/graphql',

@@ -9,7 +9,7 @@
 
 Optionally, set environment variables to override defaults:
 
-    PORT = 8080,
+    PORT = 3000,
     NEO4J_URL = "bolt://localhost:7687",
     NEO4J_USER = "neo4j",
     NEO4J_PASSWORD = "letmein"

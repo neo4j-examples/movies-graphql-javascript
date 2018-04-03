@@ -20,7 +20,7 @@ function showMovie(title) {
       $("#poster").attr("src", "http://neo4j-contrib.github.io/developer-resources/language-guides/assets/posters/" + movie.title + ".jpg");
       var $list = $("#crew").empty();
       movie.cast.forEach(cast => {
-        $list.append($("<li>" + cast.name + " " + cast.job + (cast.job == "acted" ? " as " + cast.role : "") + "</li>"));
+        $list.append($("<li>" + cast.name + " " + cast.job + "</li>"));
       });
     }, "json");
 }

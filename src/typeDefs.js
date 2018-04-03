@@ -1,21 +1,17 @@
 export default `
   type Query {
-    movieSearch(title: String): [Movie]
+    movieSearch(title: String): [Movie] @cypher(statement:"MATCH (m:Movie) WHERE toLower(m.title) CONTAINS toLower(title) RETURN m")
   }
 
   type Movie {
       title: String
       released: Int
       tagline: String
-      cast: [ActorRole]
-  }
+      actors: [Person] @relation(name: "ACTED_IN", direction: "IN")
+    }
 
-  type ActorRole {
-      roles: [String]
-      actor: Actor
-  }
 
-  type Actor {
+  type Person {
       name: String
   }
 

@@ -36,11 +36,8 @@ function getMovie(title) {
             query: gql`query movieSeach($title:String){
                 movieSearch(title: $title) {
                   title
-                  cast {
-                    roles
-                    actor {
-                      name
-                    }
+                  actors {
+                    name
                   }
                 }
               }`,
@@ -49,7 +46,7 @@ function getMovie(title) {
         .then(data => {
             console.log(data);
             const movie = data.data.movieSearch[0];
-            return new MovieCast(movie.title, movie.cast);
+            return new MovieCast(movie.title, movie.actors);
 
         })
         .catch(error => {throw error});
@@ -62,10 +59,8 @@ function getGraph() {
             query: gql`{
                 movieSearch(title: "") {
                   title
-                  cast {
-                    actor {
-                      name
-                    }
+                  actors {
+                    name
                   }
                 }
               }`
@@ -77,8 +72,8 @@ function getGraph() {
                 var target = i;
                 i++;
 
-                res.cast.forEach(c => {
-                    var actor = {title: c.actor.name, label: 'actor'};
+                res.actors.forEach(c => {
+                    var actor = {title: c.name, label: 'actor'};
                     var source = _.findIndex(nodes, actor);
                     if (source == -1) {
                         nodes.push(actor);
